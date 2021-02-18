@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bail Amount</title>
+</head>
+
+<body>
+    <h1>This predicts bail amounts</h1>
+    <form class="" action="{{ url_for('predict') }}" method='POST'>
+        <br>
+        <div class="row">
+            <div class="col-sm text-center">
+                <label>Ohio Revised Code Section<br> (most serious charge in the indictment)</label>
+                <br>
+                {{form.input_plea_orc}}
+                <ul>
+            </div>
+            {% for error in form.input_plea_orc.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+
+            <div class="col-sm">
+                <!-- line up list -->
+                <label class="race" for="input_race">Race</label>
+                <br>
+                {{form.input_race}}
+                <ul>
+                    {% for error in form.input_race.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-sm text-center">
+                {{form.input_priors.label}}
+                <br>
+                <input id="input_priors" name="input_priors" required="" type="number" value="" min="0" max="50"
+                    inputmode="numeric">
+                <ul>
+                    {% for error in form.input_priors.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="submit" class="btn btn-primary mt-3">Analyze</button>
+            </div>
+        </div>
+
+    </form>
+</body>
+
+</html>
